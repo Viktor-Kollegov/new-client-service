@@ -14,4 +14,28 @@ eureka:
     preferIpAddress: true
 
 book-service:
-  url: http://localhost:8081/
+  url: http://localhost:8081
+#  ribbon:
+#    eureka:
+#      enabled: true
+#    ServerListRefreshInterval: 1000
+# на 2.3.10 enabled и ниже не пашет + отрубается hystrix в пропертях
+
+#book-service:
+#  ribbon:
+#    listOfServers: localhost:8082,localhost:8092
+#    eureka:
+#      enabled: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: hystrix.stream, info, health
+
+#hystrix:
+#  dashboard:
+#    proxy-stream-allow-list:
+#      - 'localhost'
+#      уже добавили в проперти
+
